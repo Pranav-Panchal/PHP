@@ -5,8 +5,8 @@ This is a simple **Book Management System** built using PHP and AJAX. The system
 ## Features
 
 - Add a book with the following details:
-  - Title (letters and spaces only)
-  - Author (letters and spaces only)
+  - Title 
+  - Author 
   - Publication year (valid year between 1000 and the current year)
 - Dynamically display the book list without page reload using AJAX.
 - Validation for:
@@ -22,5 +22,4 @@ This is a simple **Book Management System** built using PHP and AJAX. The system
 - **HTML/CSS**: For the form and book list UI.
 - **JavaScript**: For AJAX handling and dynamic updates of the book list.
 
-## Project Structure
 
