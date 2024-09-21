@@ -90,6 +90,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             padding: 12px;
             text-align: center;
         }
+        h1,h2{
+            text-align: center;
+        }
     </style>
 </head>
 <body>
