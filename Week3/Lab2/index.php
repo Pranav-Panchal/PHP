@@ -1,16 +1,13 @@
 <?php
 include 'Book.php';
 
-// Check if the request is an AJAX request
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $response = ['success' => false, 'errors' => [], 'book' => []];
 
-    // Retrieve form data
     $title = $_POST['title'];
     $author = $_POST['author'];
     $year = $_POST['year'];
 
-    // Validate input
     if (empty($title)) {
         $response['errors']['title'] = "Title is required.";
     }
@@ -23,10 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (empty($response['errors'])) {
         try {
-            // Create a new Book object
             $book = new Book($title, $author, $year);
-            
-            // Respond with success and the book data
+
             $response['success'] = true;
             $response['book'] = [
                 'title' => $book->getTitle(),
@@ -39,7 +34,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 
-    // Send the JSON response
     header('Content-Type: application/json');
     echo json_encode($response);
     exit;
@@ -81,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             margin: 20px auto;
             border-collapse: collapse;
             width: 80%;
-            display: none; /* Initially hidden */
+            display: none;
         }
         table, th, td {
             border: 1px solid #ddd;
@@ -119,7 +113,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <tr><th>Title</th><th>Author</th><th>Year</th></tr>
         </thead>
         <tbody id="bookTableBody">
-            <!-- Books will be dynamically added here -->
         </tbody>
     </table>
 
@@ -127,15 +120,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         document.getElementById('bookForm').addEventListener('submit', function (e) {
             e.preventDefault();
 
-            // Clear previous errors
             document.getElementById('titleError').textContent = '';
             document.getElementById('authorError').textContent = '';
             document.getElementById('yearError').textContent = '';
 
-            // Create form data
             var formData = new FormData(this);
 
-            // Send AJAX request
             var xhr = new XMLHttpRequest();
             xhr.open('POST', 'index.php', true);
             xhr.onload = function () {
@@ -143,22 +133,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     var response = JSON.parse(xhr.responseText);
 
                     if (response.success) {
-                        // Show the book table and heading if it's the first book
                         document.getElementById('bookTable').style.display = 'table';
                         document.getElementById('bookListHeading').style.display = 'block';
                         document.getElementById('bookTableHead').style.display = 'table-header-group';
 
-                        // Add the new book to the table
                         var bookTableBody = document.getElementById('bookTableBody');
                         var newRow = bookTableBody.insertRow();
                         newRow.innerHTML = '<td>' + response.book.title + '</td><td>' + response.book.author + '</td><td>' + response.book.year + '</td>';
 
-                        // Clear form fields
                         document.getElementById('title').value = '';
                         document.getElementById('author').value = '';
                         document.getElementById('year').value = '';
                     } else {
-                        // Display validation errors
                         if (response.errors.title) {
                             document.getElementById('titleError').textContent = response.errors.title;
                         }
