@@ -8,7 +8,25 @@ $degreeName = $fieldStudy = $instituteName = $yog = "";
 //     $email = $_SESSION['email'];
 // }
 
+if(isset($_SESSION['degree'])){
+    $degreeName = $_SESSION['degree'];
+}
+if(isset($_SESSION['field'])){
+    $fieldStudy = $_SESSION['field'];
+}
+if(isset($_SESSION['institute'])){
+    $instituteName = $_SESSION['institute'];
+}
+if(isset($_SESSION['year'])){
+    $yog = $_SESSION['year'];
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    if(isset($_POST['previous'])){
+        header('Location: index.php');
+        exit();
+    }
 
     //implimenting sanitization and validation to each field
 
@@ -75,7 +93,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <input type="text" name="year" id="year" value="<?php echo htmlspecialchars($yog); ?>" placeholder="Enter your graduation year">
         <span class="error"><?php echo isset($errors['year']) ? $errors['year'] : ''; ?></span><br>
 
-        <input type="submit"  value="Next Step">
+        <div>
+            <button type="submit" name="previous">Previous</button>
+            <button type="submit" name="next">Next Step</button>
+        </div>
     </form>
 </body>
 </html>

@@ -4,11 +4,25 @@ session_start();
 $errors = [];
 $jobTitle = $cName = $yoe = $response = "";
 
-// if(isset($_SESSION['email'])){
-//     $email = $_SESSION['email'];
-// }
+if(isset($_SESSION['job_title'])){
+    $jobTitle = $_SESSION['job_title'];
+}
+if(isset($_SESSION['c_name'])){
+    $cName = $_SESSION['c_name'];
+}
+if(isset($_SESSION['experience'])){
+    $yoe = $_SESSION['experience'];
+}
+if(isset($_SESSION['respons'])){
+    $response = $_SESSION['respons'];
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    if(isset($_POST['previous'])){
+        header('Location: background.php');
+        exit();
+    }
 
     //implimenting sanitization and validation to each field
 
@@ -72,10 +86,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <span class="error"><?php echo isset($errors['experience']) ? $errors['experience'] : ''; ?></span><br>
 
         <label for="respons">Key Responsibilities</label>
-        <textarea name="respons" id="respons" placeholder="Enter your Responsibility"><?php echo htmlspecialchars($response); ?>"</textarea>
+        <textarea name="respons" id="respons" placeholder="Enter your Responsibility"><?php echo htmlspecialchars($response); ?></textarea>
         <span class="error"><?php echo isset($errors['respons']) ? $errors['respons'] : ''; ?></span><br>
 
-        <input type="submit"  value="Next Step">
+        <div>
+            <input type="submit"  name="previous" value="Previous">
+            <input type="submit"  name="next" value="Next Step">
+        </div>
+
     </form>
+
+
 </body>
 </html>

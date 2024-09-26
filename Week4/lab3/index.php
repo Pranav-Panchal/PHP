@@ -8,6 +8,14 @@ if(isset($_SESSION['email'])){
     $email = $_SESSION['email'];
 }
 
+if(isset($_SESSION['full-name'])){
+    $fullName = $_SESSION['full-name'];
+}
+
+if(isset($_SESSION['phone-number'])){
+    $phoneNumber = $_SESSION['phone-number'];
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     //implimenting sanitization and validation to each field
@@ -67,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <input type="text" name="phone-number" id="phone-number" value="<?php echo htmlspecialchars($phoneNumber); ?>" placeholder="Enter your phone number">
         <span class="error"><?php echo isset($errors['phone-number']) ? $errors['phone-number'] : ''; ?></span><br>
 
-        <input type="submit"  value="Next-step">
+        <button type="submit" name="next">Next Step</button>
     </form>
 </body>
 </html>
