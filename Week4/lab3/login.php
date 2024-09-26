@@ -43,6 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     session_regenerate_id(true);
 
                     $_SESSION['username'] = $username;
+                    $_SESSION['email'] = $user['email'];
                     
                     if($rememberMe){
                         //setting up cookie for 7 days 
