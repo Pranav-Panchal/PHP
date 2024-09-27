@@ -60,6 +60,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])){
     $message = "Dear {$_SESSION['full-name']}, \n\n Your application has been submitted. ";
 
     echo "<h2>Application Submitted!</h2>";
+    echo "<h2>The confirmation mail has been sent to your email.</h2>";
 
     session_unset();
     session_destroy();
@@ -79,12 +80,13 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Review</title>
 </head>
 <body>
-    <h3>Hey <?php echo htmlspecialchars($username); ?></h3>
+    <h3>Hey <?php echo htmlspecialchars($username); ?>! </h3>
     <h1>Review your Application</h1>
-
+    <div class="form">
     <p> Full Name: <?php echo htmlspecialchars ($fullName); ?><a href="index.php">Edit</a></p> 
     <p> Email: <?php echo htmlspecialchars ($email); ?><a href="index.php">Edit</a> </p> 
     <p> Phone Number: <?php echo htmlspecialchars ($phoneNumber); ?><a href="index.php">Edit</a> </p> 
@@ -103,5 +105,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])){
         <button type="submit" name="submit"> Submit </button>
         <a href="index.php"><button type="button">Previous</button></a>
     </form>
+    </div>
 </body>
 </html>

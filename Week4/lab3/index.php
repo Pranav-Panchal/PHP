@@ -75,29 +75,32 @@ if(isset($_POST['logout'])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Personal Info</title>
 </head>
 <body>
-    <h3>Hey <?php echo htmlspecialchars($username); ?></h3>
+    <h3>Hey, <?php echo htmlspecialchars($username); ?>! </h3>
     <h1>Personal Details</h1>
+    <div class="form">
+        <form action="" method="POST">
+            <label for="full-name">Full Name</label>
+                <input type="text" name="full-name" id="full-name" value="<?php echo htmlspecialchars($fullName); ?>" placeholder="Enter your full name">
+                <span class="error"><?php echo isset($errors['full-name']) ? $errors['full-name'] : ''; ?></span><br>
+
+                <label for="email">Email Address</label>
+                <input type="email" name="email" id="email" value="<?php echo htmlspecialchars($email); ?>" placeholder="Enter your email">
+                <span class="error"><?php echo isset($errors['email']) ? $errors['email'] : ''; ?></span><br>
+
+                <label for="phone-number">Phone Number</label>
+                <input type="text" name="phone-number" id="phone-number" value="<?php echo htmlspecialchars($phoneNumber); ?>" placeholder="Enter your phone number">
+                <span class="error"><?php echo isset($errors['phone-number']) ? $errors['phone-number'] : ''; ?></span><br>
+
+                <button type="submit" name="next">Next Step</button>
+        </form>
+    </div>
+
     <form action="" method="POST">
-    <label for="full-name">Full Name</label>
-        <input type="text" name="full-name" id="full-name" value="<?php echo htmlspecialchars($fullName); ?>" placeholder="Enter your full name">
-        <span class="error"><?php echo isset($errors['full-name']) ? $errors['full-name'] : ''; ?></span><br>
-
-        <label for="email">Email Address</label>
-        <input type="email" name="email" id="email" value="<?php echo htmlspecialchars($email); ?>" placeholder="Enter your email">
-        <span class="error"><?php echo isset($errors['email']) ? $errors['email'] : ''; ?></span><br>
-
-        <label for="phone-number">Phone Number</label>
-        <input type="text" name="phone-number" id="phone-number" value="<?php echo htmlspecialchars($phoneNumber); ?>" placeholder="Enter your phone number">
-        <span class="error"><?php echo isset($errors['phone-number']) ? $errors['phone-number'] : ''; ?></span><br>
-
-        <button type="submit" name="next">Next Step</button>
-    </form>
-
-    <form action="" method="POST">
-        <button  type="submit" name="logout">LOGOUT</button>
+        <button class="logout" type="submit" name="logout">LOGOUT</button>
     </form>
 </body>
 </html>

@@ -79,6 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <h1>Login</h1>
+    <div class="form">
     <form action="" method="post">
 
         <label for="username">Username</label>
@@ -97,6 +98,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <input type="submit" name="login" value="Login">       
     </form>
 
-    <p>Don't have an account? <a href="registration.php">Register Here</a></p>
+
+        <p>Don't have an account? <a href="registration.php">Register Here</a></p>
+
+    </div>
 </body>
 </html>

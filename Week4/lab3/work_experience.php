@@ -87,37 +87,40 @@ if(isset($_POST['logout'])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Work Experience</title>
 </head>
 <body>
     <h3>Hey <?php echo htmlspecialchars($username); ?></h3>
     <h1>Work Experience</h1>
+    <div class="form">
+        <form action="" method="POST">
+        <label for="job_title">Previous Job Title</label>
+            <input type="text" name="job_title" id="job_title" value="<?php echo htmlspecialchars($jobTitle); ?>" placeholder="Enter your job_title">
+            <span class="error"><?php echo isset($errors['job_title']) ? $errors['job_title'] : ''; ?></span><br>
+
+            <label for="c_name">Company Name</label>
+            <input type="text" name="c_name" id="c_name" value="<?php echo htmlspecialchars($cName); ?>" placeholder="Enter your company name">
+            <span class="error"><?php echo isset($errors['c_name']) ? $errors['c_name'] : ''; ?></span><br>
+
+            <label for="experience">Years of Experience</label>
+            <input type="number" name="experience" id="experience" value="<?php echo htmlspecialchars($yoe); ?>" placeholder="Enter your years of experience ">
+            <span class="error"><?php echo isset($errors['experience']) ? $errors['experience'] : ''; ?></span><br>
+
+            <label for="respons">Key Responsibilities</label>
+            <textarea name="respons" id="respons" placeholder="Enter your Responsibility"><?php echo htmlspecialchars($response); ?></textarea>
+            <span class="error"><?php echo isset($errors['respons']) ? $errors['respons'] : ''; ?></span><br>
+
+            <div>
+                <input type="submit"  name="previous" value="Previous">
+                <input type="submit"  name="next" value="Next Step">
+            </div>
+
+        </form>
+    </div>
+
     <form action="" method="POST">
-    <label for="job_title">Previous Job Title</label>
-        <input type="text" name="job_title" id="job_title" value="<?php echo htmlspecialchars($jobTitle); ?>" placeholder="Enter your job_title">
-        <span class="error"><?php echo isset($errors['job_title']) ? $errors['job_title'] : ''; ?></span><br>
-
-        <label for="c_name">Company Name</label>
-        <input type="text" name="c_name" id="c_name" value="<?php echo htmlspecialchars($cName); ?>" placeholder="Enter your company name">
-        <span class="error"><?php echo isset($errors['c_name']) ? $errors['c_name'] : ''; ?></span><br>
-
-        <label for="experience">Years of Experience</label>
-        <input type="number" name="experience" id="experience" value="<?php echo htmlspecialchars($yoe); ?>" placeholder="Enter your years of experience ">
-        <span class="error"><?php echo isset($errors['experience']) ? $errors['experience'] : ''; ?></span><br>
-
-        <label for="respons">Key Responsibilities</label>
-        <textarea name="respons" id="respons" placeholder="Enter your Responsibility"><?php echo htmlspecialchars($response); ?></textarea>
-        <span class="error"><?php echo isset($errors['respons']) ? $errors['respons'] : ''; ?></span><br>
-
-        <div>
-            <input type="submit"  name="previous" value="Previous">
-            <input type="submit"  name="next" value="Next Step">
-        </div>
-
-    </form>
-
-    <form action="" method="POST">
-        <button  type="submit" name="logout">LOGOUT</button>
+        <button class="logout" type="submit" name="logout">LOGOUT</button>
     </form>
 
 

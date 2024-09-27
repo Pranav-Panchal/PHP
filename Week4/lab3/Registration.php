@@ -55,33 +55,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Lab 4</title>
-    <style>
-        .error {
-            color: red;
-            font-size: 12px;
-        }
-    </style>
 </head>
 <body>
     <h1>Registration Form</h1>
+    <div class="form">
+        <form action="" method="post">
 
-    <form action="" method="post">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" value="<?php echo isset($username) ? htmlspecialchars($username) : ''; ?>" placeholder="Enter your username">
+            <span class="error"><?php echo isset($errors['username']) ? $errors['username'] : ''; ?></span><br>
 
-        <label for="username">Username</label>
-        <input type="text" name="username" id="username" value="<?php echo isset($username) ? htmlspecialchars($username) : ''; ?>" placeholder="Enter your username">
-        <span class="error"><?php echo isset($errors['username']) ? $errors['username'] : ''; ?></span><br>
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" value="<?php echo isset($email) ? htmlspecialchars($email) : ''; ?>" placeholder="Enter your email">
+            <span class="error"><?php echo isset($errors['email']) ? $errors['email'] : ''; ?></span><br>
 
-        <label for="email">Email</label>
-        <input type="email" name="email" id="email" value="<?php echo isset($email) ? htmlspecialchars($email) : ''; ?>" placeholder="Enter your email">
-        <span class="error"><?php echo isset($errors['email']) ? $errors['email'] : ''; ?></span><br>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" placeholder="Enter your password">
+            <span class="error"><?php echo isset($errors['password']) ? $errors['password'] : ''; ?></span><br>
 
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" placeholder="Enter your password">
-        <span class="error"><?php echo isset($errors['password']) ? $errors['password'] : ''; ?></span><br>
-
-        <input type="submit" name="register" value="Register">       
-    </form>
-    <p>Already have an account? <a href="login.php">Login Here</a></p>
+            <input type="submit" name="register" value="Register">       
+        </form>
+        <p>Already have an account? <a href="login.php">Login Here</a></p>
+    </div>
 </body>
 </html>
