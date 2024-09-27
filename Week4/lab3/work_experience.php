@@ -4,6 +4,10 @@ session_start();
 $errors = [];
 $jobTitle = $cName = $yoe = $response = "";
 
+if(isset($_SESSION['username'])){
+    $username = $_SESSION['username'];
+}
+
 if(isset($_SESSION['job_title'])){
     $jobTitle = $_SESSION['job_title'];
 }
@@ -59,6 +63,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
 
+
+
+}
+
+if(isset($_POST['logout'])){
+    session_unset();
+    session_destroy();
+
+    if(isset($_COOKIE['username_remember'])){
+        setcookie('username_remember', '', time() - 3600, "/");
+    }
+
+    
+    header('Location: login.php');
+    exit();
 }
 ?>
 
@@ -71,6 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Work Experience</title>
 </head>
 <body>
+    <h3>Hey <?php echo htmlspecialchars($username); ?></h3>
     <h1>Work Experience</h1>
     <form action="" method="POST">
     <label for="job_title">Previous Job Title</label>
@@ -94,6 +114,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="submit"  name="next" value="Next Step">
         </div>
 
+    </form>
+
+    <form action="" method="POST">
+        <button  type="submit" name="logout">LOGOUT</button>
     </form>
 
 

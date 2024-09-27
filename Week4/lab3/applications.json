@@ -65,5 +65,31 @@
         "company_name": "dfbd",
         "experience": "12",
         "responsible": "dfb"
+    },
+    {
+        "full_name": "Pranav Panchal",
+        "email": "pranavkpanchal4@gmail.com",
+        "phone_number": "4377662704",
+        "degree": "BE",
+        "field": "CE",
+        "institute": "dsn",
+        "graduation_year": " dfn",
+        "job": "dfvfo",
+        "company_name": "dfdnvin",
+        "experience": "2",
+        "responsible": "fvn"
+    },
+    {
+        "full_name": "Pranav Panchal",
+        "email": "pranav@humber.ca",
+        "phone_number": "123456",
+        "degree": "pranav",
+        "field": "praav",
+        "institute": "gsfv",
+        "graduation_year": "f",
+        "job": "dfd",
+        "company_name": "f",
+        "experience": "2",
+        "responsible": "sg"
     }
 ]

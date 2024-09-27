@@ -10,6 +10,10 @@ if(!isset($_SESSION['full-name']) || !isset( $_SESSION['email']) || !isset($_SES
     exit();
 }
 
+if(isset($_SESSION['username'])){
+    $username = $_SESSION['username'];
+}
+
 $fullName = $_SESSION['full-name'];
 $email = $_SESSION['email'];
 $phoneNumber = $_SESSION['phone-number'];
@@ -78,6 +82,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])){
     <title>Review</title>
 </head>
 <body>
+    <h3>Hey <?php echo htmlspecialchars($username); ?></h3>
     <h1>Review your Application</h1>
 
     <p> Full Name: <?php echo htmlspecialchars ($fullName); ?><a href="index.php">Edit</a></p> 

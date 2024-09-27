@@ -4,9 +4,9 @@ session_start();
 $errors = [];
 $degreeName = $fieldStudy = $instituteName = $yog = "";
 
-// if(isset($_SESSION['email'])){
-//     $email = $_SESSION['email'];
-// }
+if(isset($_SESSION['username'])){
+    $username = $_SESSION['username'];
+}
 
 if(isset($_SESSION['degree'])){
     $degreeName = $_SESSION['degree'];
@@ -64,6 +64,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
 }
+
+if(isset($_POST['logout'])){
+    session_unset();
+    session_destroy();
+
+    if(isset($_COOKIE['username_remember'])){
+        setcookie('username_remember', '', time() - 3600, "/");
+    }
+
+    
+    header('Location: login.php');
+    exit();
+}
 ?>
 
 
@@ -75,6 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Educational background</title>
 </head>
 <body>
+    <h3>Hey <?php echo htmlspecialchars($username); ?></h3>
     <h1>Educational background</h1>
     <form action="" method="POST">
     <label for="degree">Highest Degree Obtained</label>
@@ -97,6 +111,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <button type="submit" name="previous">Previous</button>
             <button type="submit" name="next">Next Step</button>
         </div>
+    </form>
+
+    <form action="" method="POST">
+        <button  type="submit" name="logout">LOGOUT</button>
     </form>
 </body>
 </html>

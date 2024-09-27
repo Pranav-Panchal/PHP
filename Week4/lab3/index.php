@@ -4,6 +4,10 @@ session_start();
 $errors = [];
 $fullName = $email = $phoneNumber = "";
 
+if(isset($_SESSION['username'])){
+    $username = $_SESSION['username'];
+}
+
 if(isset($_SESSION['email'])){
     $email = $_SESSION['email'];
 }
@@ -50,6 +54,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
 }
+
+if(isset($_POST['logout'])){
+    session_unset();
+    session_destroy();
+
+    if(isset($_COOKIE['username_remember'])){
+        setcookie('username_remember', '', time() - 3600, "/");
+    }
+
+    
+    header('Location: login.php');
+    exit();
+}
 ?>
 
 
@@ -61,6 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Personal Info</title>
 </head>
 <body>
+    <h3>Hey <?php echo htmlspecialchars($username); ?></h3>
     <h1>Personal Details</h1>
     <form action="" method="POST">
     <label for="full-name">Full Name</label>
@@ -76,6 +94,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <span class="error"><?php echo isset($errors['phone-number']) ? $errors['phone-number'] : ''; ?></span><br>
 
         <button type="submit" name="next">Next Step</button>
+    </form>
+
+    <form action="" method="POST">
+        <button  type="submit" name="logout">LOGOUT</button>
     </form>
 </body>
 </html>
